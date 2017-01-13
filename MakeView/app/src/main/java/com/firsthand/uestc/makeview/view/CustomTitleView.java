@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -104,7 +105,7 @@ public class CustomTitleView extends View{
                 postInvalidate();
             }
         });
-
+        Log.e("Custom","Make");
     }
 
     private String randomText()
@@ -126,16 +127,17 @@ public class CustomTitleView extends View{
     }
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-
+        Log.e("Custom",widthMode+"");
         int width;
         int height;
 
-        if(widthMode == widthMeasureSpec){
+        if(widthMode == MeasureSpec.EXACTLY){
             width = widthSize;
         }else{
             mPaint.setTextSize(mTitleTextSize);
@@ -145,7 +147,7 @@ public class CustomTitleView extends View{
             width = desired;
         }
 
-        if(heightMode == heightMeasureSpec){
+        if(heightMode == MeasureSpec.EXACTLY){
             height = heightSize;
         }else{
             mPaint.setTextSize(mTitleTextSize);
@@ -160,6 +162,7 @@ public class CustomTitleView extends View{
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Log.e("Custom","onDraw");
         super.onDraw(canvas);
         mPaint.setColor(Color.YELLOW);
         canvas.drawRect(0,0,getMeasuredWidth(),getMeasuredHeight(),mPaint);
